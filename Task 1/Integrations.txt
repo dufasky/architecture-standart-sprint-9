@@ -1,0 +1,41 @@
+Схему интеграции приложений с указанием участников процессов.
+https://mermaid.live/
+
+
+flowchart LR
+    %% Участники и системы
+    C["Клиент"]
+    IB["Интернет-банк\n(ASP.NET, SQL)"]
+    ABS["АБС\n(Oracle, Delphi)"]
+    CC["Кол-центр\n(Java, PostgreSQL)"]
+    BRM["Бэк-офис\n(депозиты)"]
+    CRM["Бэк-офис\n(кредиты)"]
+    SMS["СМС-шлюз"]
+
+    %% Текущий процесс
+    C -->|1.Заявка| IB
+    IB -->|2.Данные клиента| ABS
+    ABS -->|3.Проверка| BRM
+    BRM -->|4.Запрос ставки| CRM
+    CRM -->|5.Данные о рисках| BRM
+    BRM -->|6.Расчет ставки| ABS
+    ABS -->|7.Подтверждение| IB
+    IB -->|8.Оповещение| SMS
+    SMS --> C
+
+    %% Планируемые изменения (MVP)
+    IB -.->|API для депозитов| ABS
+    ABS -.->|Автоматизация| BRM
+
+    %% Стили
+    classDef client fill:#f9e79f,stroke:#333
+    classDef it fill:#aed6f1,stroke:#333
+    classDef core fill:#e74c3c,stroke:#333,color:white
+    classDef front fill:#2ecc71,stroke:#333
+    classDef back fill:#9b59b6,stroke:#333,color:white
+
+    class C client
+    class IB it
+    class ABS core
+    class CC front
+    class BRM,CRM back

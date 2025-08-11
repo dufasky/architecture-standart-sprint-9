@@ -1,0 +1,60 @@
+Карта IT-ландшафта
+https://mermaid.live/
+
+
+flowchart TD
+    %% Заголовки таблицы
+    subgraph BC["Business Capability Map"]
+        direction TB
+        A1[Бизнес-менеджмент]:::header
+        A2[Управление клиентами]:::header
+        A3[Продуктовый менеджмент]:::header
+        A4[Маркетинг]:::header
+        A5[Продажи и дистрибуция]:::header
+    end
+
+    %% Содержимое ячеек
+    subgraph BM["Business Management"]
+        B1[Fiscal & Accounting Management]:::bm
+        B2[Risk & Compliance Management]:::bm
+        B3[Strategic Management]:::bm
+        B4[Performance Management]:::bm
+        B5[Enterprise Architecture]:::bm
+    end
+
+    subgraph CM["Customer Management"]
+        C1[Customer Contact Management]:::cm
+        C2[Service Channel Management]:::cm
+        C3[Customer Relation Management]:::cm
+        C4[Customer Data Management]:::cm
+    end
+
+    subgraph PM["Product Management"]
+        D1[Product Definition]:::pm
+        D2[Product Engineering]:::pm
+    end
+
+    subgraph M["Marketing"]
+        E1[Market Development]:::m
+        E2[Campaign Management]:::m
+    end
+
+    subgraph SD["Sales and Distribution"]
+        F1[Distribution Channel Management]:::sd
+        F2[Sales Execution]:::sd
+    end
+
+    %% Связи для отображения иерархии
+    A1 --> BM
+    A2 --> CM
+    A3 --> PM
+    A4 --> M
+    A5 --> SD
+
+    %% Стили
+    classDef header fill:#2e86c1,stroke:#333,color:white
+    classDef bm fill:#aed6f1,stroke:#333
+    classDef cm fill:#a9dfbf,stroke:#333
+    classDef pm fill:#f9e79f,stroke:#333
+    classDef m fill:#f5b7b1,stroke:#333
+    classDef sd fill:#d7bde2,stroke:#333
